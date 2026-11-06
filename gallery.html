@@ -1,0 +1,112 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Gallery - Manasa Events</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Arial;background:#fff7fb;color:#492b55}
+header{padding:20px 7%;background:white;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap}
+.logo{font-size:25px;color:#713b91;font-weight:bold}
+.logo span{color:#e75480}
+nav a{margin:9px;text-decoration:none;color:#713b91;font-weight:bold}
+.hero{background:linear-gradient(#4c235c99,#4c235c99),url('https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=1500') center/cover;padding:90px 15px;text-align:center;color:white}
+.hero h1{font:48px Georgia}
+section{padding:55px 7%}
+.heading{text-align:center;color:#713b91;font:35px Georgia;margin-bottom:30px}
+.filters{text-align:center;margin-bottom:30px}
+button{background:#e75480;color:white;border:0;padding:12px 22px;border-radius:25px;margin:5px;cursor:pointer}
+button:hover{background:#713b91}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.grid img{width:100%;height:280px;object-fit:cover;border-radius:15px;cursor:pointer;transition:.3s}
+.grid img:hover{transform:scale(1.03)}
+.hidden{display:none}
+#viewer{display:none;position:fixed;inset:0;background:#180c20ee;z-index:200;align-items:center;justify-content:center;padding:20px}
+#viewer img{max-width:90%;max-height:85vh;border-radius:15px}
+#close{position:absolute;right:30px;top:20px;font-size:35px;color:white;cursor:pointer}
+footer{background:#42214f;color:white;text-align:center;padding:30px}
+@media(max-width:700px){.grid{grid-template-columns:repeat(2,1fr)}.hero h1{font-size:35px}}
+@media(max-width:450px){.grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header>
+<div class="logo">MANASA <span>EVENTS</span></div>
+<nav>
+<a href="index.html">Home</a>
+<a href="about.html">About</a>
+<a href="services.html">Services</a>
+<a href="gallery.html">Gallery</a>
+<a href="booking.html">Booking</a>
+<a href="contact.html">Contact</a>
+</nav>
+</header>
+
+<div class="hero">
+<h1>Our Event Gallery</h1>
+<p>Beautiful Celebrations, Beautiful Memories</p>
+</div>
+
+<section>
+<h2 class="heading">Our Beautiful Moments</h2>
+
+<div class="filters">
+<button onclick="filter('all')">All</button>
+<button onclick="filter('wedding')">Wedding</button>
+<button onclick="filter('birthday')">Birthday</button>
+<button onclick="filter('party')">Celebrations</button>
+</div>
+
+<div class="grid">
+<img class="wedding" src="https://images.unsplash.com/photo-1519741497674-611481863552?w=900" onclick="show(this)">
+<img class="wedding" src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=900" onclick="show(this)">
+<img class="birthday" src="https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=900" onclick="show(this)">
+<img class="party" src="https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=900" onclick="show(this)">
+<img class="wedding" src="https://images.unsplash.com/photo-1465495976277-4387d4b0e4a6?w=900" onclick="show(this)">
+<img class="birthday" src="https://images.unsplash.com/photo-1513151233558-d860c5398176?w=900" onclick="show(this)">
+<img class="party" src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=900" onclick="show(this)">
+<img class="party" src="https://images.unsplash.com/photo-1507504031003-b417219a0fde?w=900" onclick="show(this)">
+<img class="wedding" src="https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=900" onclick="show(this)">
+</div>
+</section>
+
+<div id="viewer" onclick="closeViewer()">
+<span id="close">×</span>
+<img id="largeImage" src="" alt="Selected event photograph">
+</div>
+
+<footer>
+<h2>MANASA EVENT MANAGEMENT</h2>
+<p>© 2026 All Rights Reserved.</p>
+</footer>
+
+<script>
+    <nav id="navbar">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="services.html">Services</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="booking.html">Booking</a>
+    <a href="contact.html">Contact</a>
+    <a href="login.html">Login</a>
+</nav>
+function filter(category){
+document.querySelectorAll(".grid img").forEach(img=>{
+img.classList.toggle("hidden",
+category!=="all" && !img.classList.contains(category));
+});
+}
+function show(img){
+document.getElementById("largeImage").src=img.src;
+document.getElementById("viewer").style.display="flex";
+}
+function closeViewer(){
+document.getElementById("viewer").style.display="none";
+}
+document.addEventListener("keydown",e=>{
+if(e.key==="Escape")closeViewer();
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,141 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Book Your Event - Manasa</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Arial;background:#fff5fa;color:#492b55}
+header{background:white;padding:20px 7%;display:flex;justify-content:space-between;flex-wrap:wrap}
+.logo{font-size:24px;font-weight:bold;color:#713b91}
+.logo span{color:#e75480}
+nav a{margin:10px;text-decoration:none;color:#713b91;font-weight:bold}
+.hero{background:linear-gradient(#492052aa,#492052aa),url('https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=1400') center/cover;padding:75px 15px;text-align:center;color:white}
+.hero h1{font:45px Georgia}
+.container{max-width:750px;margin:45px auto;background:white;padding:35px;border-radius:20px;box-shadow:0 5px 25px #713b9125}
+h2{text-align:center;color:#713b91;font:32px Georgia;margin-bottom:25px}
+label{display:block;margin-top:15px;font-weight:bold;color:#713b91}
+input,select,textarea{width:100%;padding:13px;margin-top:8px;border:1px solid #e9c9e9;border-radius:8px;font-size:15px}
+input:focus,select:focus,textarea:focus{outline:1px solid #e75480}
+button{width:100%;margin-top:25px;background:#e75480;color:white;border:0;padding:15px;border-radius:30px;font-size:16px;cursor:pointer}
+button:hover{background:#713b91}
+.note{background:#fce4ec;padding:15px;border-radius:10px;margin-bottom:20px;line-height:1.6}
+footer{background:#42214f;color:white;text-align:center;padding:30px}
+@media(max-width:600px){.container{margin:25px 15px;padding:22px}.hero h1{font-size:35px}}
+</style>
+</head>
+<body>
+<header>
+<div class="logo">MANASA <span>EVENTS</span></div>
+<nav>
+<a href="index.html">Home</a>
+<a href="services.html">Services</a>
+<a href="gallery.html">Gallery</a>
+<a href="booking.html">Booking</a>
+<a href="contact.html">Contact</a>
+</nav>
+</header>
+
+<div class="hero">
+<h1>Book Your Dream Event</h1>
+<p>Let's make your special day unforgettable!</p>
+</div>
+
+<div class="container">
+<h2>Event Booking Form</h2>
+<div class="note">Please enter your details correctly. Our event team can contact you to discuss your requirements.</div>
+
+<form id="bookingForm">
+<label>Customer Name</label>
+<input type="text" id="name" placeholder="Enter your full name" required>
+
+<label>Email Address</label>
+<input type="email" id="email" placeholder="Enter your email" required>
+
+<label>Phone Number</label>
+<input type="tel" id="phone" placeholder="10 digit mobile number" pattern="[0-9]{10}" maxlength="10" required>
+
+<label>Select Event Type</label>
+<select id="event" required>
+<option value="">Choose your event</option>
+<option>Wedding</option>
+<option>Birthday Party</option>
+<option>Engagement</option>
+<option>Reception</option>
+<option>Corporate Event</option>
+<option>Anniversary</option>
+<option>Other</option>
+</select>
+
+<label>Event Date</label>
+<input type="date" id="date" required>
+
+<label>Event Location</label>
+<input type="text" id="location" placeholder="Enter event location" required>
+
+<label>Number of Guests</label>
+<input type="number" id="guests" min="1" placeholder="Enter guest count" required>
+
+<label>Expected Budget</label>
+<select id="budget" required>
+<option value="">Select your budget</option>
+<option>Below ₹25,000</option>
+<option>₹25,000 - ₹50,000</option>
+<option>₹50,000 - ₹1,00,000</option>
+<option>₹1,00,000 - ₹3,00,000</option>
+<option>Above ₹3,00,000</option>
+</select>
+
+<label>Additional Requirements</label>
+<textarea id="message" rows="4" placeholder="Tell us about your decoration and event ideas"></textarea>
+
+<button type="submit">Submit Booking Request</button>
+</form>
+</div>
+
+<footer>
+<h2 style="color:white">MANASA EVENT MANAGEMENT</h2>
+<p>Thank you for choosing us!</p>
+</footer>
+<nav id="navbar">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="services.html">Services</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="booking.html">Booking</a>
+    <a href="contact.html">Contact</a>
+    <a href="login.html">Login</a>
+</nav>
+
+<script>
+document.getElementById("date").min=new Date().toISOString().split("T")[0];
+
+document.getElementById("event").value =
+new URLSearchParams(location.search).get("event") || "";
+
+document.getElementById("bookingForm").addEventListener("submit",function(e){
+e.preventDefault();
+
+let booking={
+name:document.getElementById("name").value.trim(),
+email:document.getElementById("email").value.trim(),
+phone:document.getElementById("phone").value,
+event:document.getElementById("event").value,
+date:document.getElementById("date").value,
+location:document.getElementById("location").value.trim(),
+guests:document.getElementById("guests").value,
+budget:document.getElementById("budget").value,
+message:document.getElementById("message").value
+};
+
+let bookings=JSON.parse(localStorage.getItem("manasaBookings")||"[]");
+bookings.push(booking);
+localStorage.setItem("manasaBookings",JSON.stringify(bookings));
+
+alert("Booking request submitted successfully! Thank you "+booking.name);
+this.reset();
+});
+</script>
+</body>
+</html>

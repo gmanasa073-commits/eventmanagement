@@ -1,0 +1,183 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Admin Dashboard - Manasa Events</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Arial;background:#fff7fb;color:#492b55}
+header{background:#713b91;color:white;padding:22px 5%;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap}
+header h2{color:white}
+header a{color:white;text-decoration:none;background:#e75480;padding:10px 20px;border-radius:20px}
+.container{padding:35px 5%}
+h2{color:#713b91;margin-bottom:22px}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-bottom:40px}
+.card{padding:25px;background:#fce4ec;border-radius:15px;text-align:center}
+.card h3{color:#713b91}
+.card h1{color:#e75480;margin-top:12px;font-size:35px}
+.tablebox{background:white;padding:20px;border-radius:15px;margin-bottom:35px;overflow-x:auto;box-shadow:0 4px 15px #713b9115}
+table{width:100%;border-collapse:collapse;min-width:650px}
+th{background:#713b91;color:white}
+td,th{padding:14px;border:1px solid #eee;text-align:left}
+tr:nth-child(even){background:#fff3f8}
+button{background:#e75480;color:white;border:0;padding:10px 18px;border-radius:20px;cursor:pointer}
+button:hover{background:#713b91}
+.empty{text-align:center;padding:25px;color:#896d91}
+footer{text-align:center;background:#42214f;color:white;padding:25px}
+@media(max-width:700px){.cards{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<header>
+<h2>MANASA ADMIN PANEL</h2>
+<a href="index.html">Visit Website</a>
+</header>
+
+<div class="container">
+<h2>Dashboard Overview</h2>
+
+<div class="cards">
+<div class="card">
+<h3>Total Bookings</h3>
+<h1 id="totalBookings">0</h1>
+</div>
+<div class="card">
+<h3>Registered Customers</h3>
+<h1 id="totalUsers">0</h1>
+</div>
+<div class="card">
+<h3>Contact Messages</h3>
+<h1 id="totalMessages">0</h1>
+</div>
+</div>
+
+<div class="tablebox">
+<h2>Event Booking Details</h2>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Email</th>
+<th>Phone</th>
+<th>Event</th>
+<th>Date</th>
+<th>Budget</th>
+</tr>
+</thead>
+<tbody id="bookingData"></tbody>
+</table>
+</div>
+
+<div class="tablebox">
+<h2>Customer Details</h2>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Email</th>
+<th>Phone</th>
+</tr>
+</thead>
+<tbody id="userData"></tbody>
+</table>
+</div>
+
+<div class="tablebox">
+<h2>Contact Enquiries</h2>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Email</th>
+<th>Phone</th>
+<th>Message</th>
+</tr>
+</thead>
+<tbody id="messageData"></tbody>
+</table>
+</div>
+
+<button onclick="clearBookings()">Clear All Booking Demo Data</button>
+</div>
+
+<footer>
+<p>MANASA EVENT MANAGEMENT | Admin Dashboard</p>
+<p>© 2026 All Rights Reserved</p>
+</footer>
+<nav id="navbar">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="services.html">Services</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="booking.html">Booking</a>
+    <a href="contact.html">Contact</a>
+    <a href="login.html">Login</a>
+</nav>
+
+<script>
+function loadDashboard(){
+
+let bookings=JSON.parse(localStorage.getItem("manasaBookings")||"[]");
+let users=JSON.parse(localStorage.getItem("manasaUsers")||"[]");
+let messages=JSON.parse(localStorage.getItem("manasaMessages")||"[]");
+
+document.getElementById("totalBookings").innerText=bookings.length;
+document.getElementById("totalUsers").innerText=users.length;
+document.getElementById("totalMessages").innerText=messages.length;
+
+function addRow(tbody,values){
+let tr=document.createElement("tr");
+values.forEach(value=>{
+let td=document.createElement("td");
+td.textContent=value||"-";
+tr.appendChild(td);
+});
+tbody.appendChild(tr);
+}
+
+let bookingBody=document.getElementById("bookingData");
+let userBody=document.getElementById("userData");
+let messageBody=document.getElementById("messageData");
+
+bookingBody.innerHTML="";
+userBody.innerHTML="";
+messageBody.innerHTML="";
+
+if(bookings.length===0){
+bookingBody.innerHTML='<tr><td colspan="6" class="empty">No bookings found</td></tr>';
+}
+
+if(users.length===0){
+userBody.innerHTML='<tr><td colspan="3" class="empty">No customers found</td></tr>';
+}
+
+if(messages.length===0){
+messageBody.innerHTML='<tr><td colspan="4" class="empty">No enquiries found</td></tr>';
+}
+
+bookings.forEach(b=>addRow(bookingBody,[
+b.name,b.email,b.phone,b.event,b.date,b.budget
+]));
+
+users.forEach(u=>addRow(userBody,[
+u.name,u.email,u.phone
+]));
+
+messages.forEach(m=>addRow(messageBody,[
+m.name,m.email,m.phone,m.message
+]));
+}
+
+function clearBookings(){
+if(confirm("Are you sure you want to delete all booking demo data?")){
+localStorage.removeItem("manasaBookings");
+loadDashboard();
+}
+}
+
+loadDashboard();
+</script>
+</body>
+</html>

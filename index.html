@@ -1,0 +1,181 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MANASA Event Management</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background: #fff0f7;
+}
+
+/* TOP NAVIGATION */
+header {
+    background: #702b82;
+    padding: 20px 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.logo {
+    color: white;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+nav {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+nav a:hover {
+    color: #ffb6d9;
+}
+
+/* HOME PAGE ONLY */
+.hero {
+    min-height: 88vh;
+    background:
+    linear-gradient(#32103b80, #32103b80),
+    url("https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=1800&q=85");
+
+    background-size: cover;
+    background-position: center;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 30px;
+}
+
+.content {
+    max-width: 800px;
+    color: white;
+}
+
+.content h1 {
+    font-size: 55px;
+    margin-bottom: 20px;
+}
+
+.content h1 span {
+    color: #ffb6d9;
+}
+
+.content p {
+    font-size: 18px;
+    line-height: 1.8;
+    margin-bottom: 30px;
+}
+
+.btn {
+    display: inline-block;
+    background: #f4a1c9;
+    color: #4b155b;
+    padding: 14px 30px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    background: white;
+    transform: scale(1.05);
+}
+
+/* FOOTER */
+footer {
+    background: #381442;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+@media(max-width: 750px) {
+    header {
+        justify-content: center;
+    }
+
+    nav {
+        justify-content: center;
+        gap: 12px;
+    }
+
+    .content h1 {
+        font-size: 36px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- TOP MENU -->
+<header>
+
+    <div class="logo">MANASA EVENTS</div>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="services.html">Services</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="booking.html">Booking</a>
+        <a href="contact.html">Contact</a>
+        <a href="login.html">Login</a>
+        <a href="register.html">Register</a>
+    </nav>
+
+</header>
+
+<!-- ONLY HOME PAGE CONTENT -->
+<section class="hero">
+
+    <div class="content">
+
+        <h1>Welcome to <span>MANASA</span> Events</h1>
+
+        <p>
+            We make your special moments unforgettable.
+            From beautiful weddings and birthday parties
+            to engagements and corporate events, we plan
+            every celebration with creativity, elegance
+            and perfection.
+        </p>
+
+        <a href="booking.html" class="btn">
+            Book Your Event
+        </a>
+
+    </div>
+
+</section>
+
+<footer>
+    <p>© 2026 MANASA Event Management | All Rights Reserved</p>
+</footer>
+
+</body>
+</html>

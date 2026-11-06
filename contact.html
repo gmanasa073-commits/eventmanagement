@@ -1,0 +1,101 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Contact Us - Manasa Events</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Arial;background:#fff7fb;color:#492b55}
+header{background:white;padding:20px 7%;display:flex;justify-content:space-between;flex-wrap:wrap}
+.logo{font-size:24px;color:#713b91;font-weight:bold}
+.logo span{color:#e75480}
+nav a{margin:10px;text-decoration:none;color:#713b91;font-weight:bold}
+.hero{background:linear-gradient(#472052aa,#472052aa),url('https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=1400') center/cover;padding:85px 15px;text-align:center;color:white}
+.hero h1{font:45px Georgia}
+section{padding:55px 8%}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.card{background:#fce4ec;padding:25px;text-align:center;border-radius:15px}
+.card h3{color:#713b91;margin-bottom:12px}
+.contact{max-width:650px;margin:30px auto;background:white;padding:30px;border-radius:18px;box-shadow:0 5px 20px #713b9120}
+h2{text-align:center;color:#713b91;font:32px Georgia;margin-bottom:25px}
+input,textarea{width:100%;padding:13px;margin:10px 0;border:1px solid #e5c9e9;border-radius:8px}
+button{width:100%;background:#e75480;color:white;border:0;padding:14px;border-radius:25px;cursor:pointer}
+button:hover{background:#713b91}
+.map{width:100%;height:300px;border:0;border-radius:15px;margin-top:25px}
+footer{background:#42214f;color:white;text-align:center;padding:30px}
+@media(max-width:700px){.grid{grid-template-columns:1fr}.hero h1{font-size:35px}}
+</style>
+</head>
+<body>
+<header>
+<div class="logo">MANASA <span>EVENTS</span></div>
+<nav>
+<a href="index.html">Home</a>
+<a href="about.html">About</a>
+<a href="services.html">Services</a>
+<a href="gallery.html">Gallery</a>
+<a href="booking.html">Booking</a>
+<a href="contact.html">Contact</a>
+</nav>
+</header>
+
+<div class="hero">
+<h1>Contact Us</h1>
+<p>We would love to hear from you!</p>
+</div>
+
+<section>
+<div class="grid">
+<div class="card"><h3>📞 Phone</h3><p>Enter your business phone number</p></div>
+<div class="card"><h3>✉ Email</h3><p>Enter your business email address</p></div>
+<div class="card"><h3>📍 Location</h3><p>Kurnool, Andhra Pradesh</p></div>
+</div>
+
+<div class="contact">
+<h2>Send Us a Message</h2>
+<form id="contactForm">
+<input id="name" placeholder="Your Name" required>
+<input id="email" type="email" placeholder="Your Email" required>
+<input id="phone" type="tel" placeholder="Phone Number" pattern="[0-9]{10}" maxlength="10" required>
+<textarea id="message" rows="5" placeholder="Write your message" required></textarea>
+<button type="submit">Send Message</button>
+</form>
+</div>
+
+<h2>Find Us</h2>
+<iframe class="map" src="https://www.google.com/maps?q=Kurnool%20Andhra%20Pradesh&output=embed" loading="lazy"></iframe>
+</section>
+
+<footer>
+<h2 style="color:white">MANASA EVENT MANAGEMENT</h2>
+<p>© 2026 All Rights Reserved</p>
+</footer>
+
+<script>
+    <nav id="navbar">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="services.html">Services</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="booking.html">Booking</a>
+    <a href="contact.html">Contact</a>
+    <a href="login.html">Login</a>
+</nav>
+document.getElementById("contactForm").addEventListener("submit",function(e){
+e.preventDefault();
+let message={
+name:document.getElementById("name").value,
+email:document.getElementById("email").value,
+phone:document.getElementById("phone").value,
+message:document.getElementById("message").value
+};
+let list=JSON.parse(localStorage.getItem("manasaMessages")||"[]");
+list.push(message);
+localStorage.setItem("manasaMessages",JSON.stringify(list));
+alert("Thank you! Your message has been received in this browser demo.");
+this.reset();
+});
+</script>
+</body>
+</html>

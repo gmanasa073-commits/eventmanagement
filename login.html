@@ -1,0 +1,69 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Customer Login - Manasa</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Arial;background:linear-gradient(135deg,#713b91,#e75480,#f8c8dc);min-height:100vh;display:flex;justify-content:center;align-items:center;padding:20px}
+.login{background:white;width:100%;max-width:430px;padding:40px;border-radius:20px;box-shadow:0 10px 35px #32104055;text-align:center}
+.logo{font-size:28px;font-weight:bold;color:#713b91;margin-bottom:12px}
+.logo span{color:#e75480}
+h2{font:32px Georgia;color:#713b91;margin:20px 0}
+p{color:#846a8b;margin-bottom:20px}
+input{width:100%;padding:14px;margin:10px 0;border:1px solid #e4c9e8;border-radius:9px}
+button{width:100%;padding:14px;background:#e75480;color:white;border:0;border-radius:25px;margin-top:15px;cursor:pointer}
+button:hover{background:#713b91}
+a{color:#e75480;text-decoration:none}
+.home{display:block;margin-top:20px}
+</style>
+</head>
+<body>
+<div class="login">
+<div class="logo">MANASA <span>EVENTS</span></div>
+<h2>Welcome Back!</h2>
+<p>Login to manage your event bookings.</p>
+
+<form id="loginForm">
+<input id="email" type="email" placeholder="Email Address" required>
+<input id="password" type="password" placeholder="Password" required minlength="6">
+<button type="submit">Customer Login</button>
+</form>
+
+<p style="margin-top:22px">Don't have an account? <a href="register.html">Register Here</a></p>
+<a class="home" href="index.html">← Back to Home</a>
+</div>
+
+<script>
+    <nav id="navbar">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="services.html">Services</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="booking.html">Booking</a>
+    <a href="contact.html">Contact</a>
+    <a href="login.html">Login</a>
+</nav>
+document.getElementById("loginForm").addEventListener("submit",function(e){
+e.preventDefault();
+
+let email=document.getElementById("email").value.trim().toLowerCase();
+let password=document.getElementById("password").value;
+
+let users=JSON.parse(localStorage.getItem("manasaUsers")||"[]");
+let user=users.find(u=>u.email===email && u.password===password);
+
+if(user){
+localStorage.setItem("manasaCurrentUser",JSON.stringify({
+name:user.name,email:user.email
+}));
+alert("Welcome "+user.name+"! Login successful.");
+window.location.href="index.html";
+}else{
+alert("Incorrect email or password. Please register first.");
+}
+});
+</script>
+</body>
+</html>
